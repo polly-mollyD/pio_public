@@ -1,0 +1,17 @@
+{
+  "average_collisions_per_run": 1.0,
+  "average_distance_travelled_m": 8.71747299148406,
+  "average_longest_collision_free_seconds": 105.63713232676189,
+  "average_reward": 1794.6666666666667,
+  "average_steps": 497.0,
+  "collision_free_run_rate": 0.0,
+  "collision_free_runs": 0,
+  "completed_runs": 3,
+  "requested_runs": 3,
+  "total_collisions": 3,
+  "total_forward_actions": 1125,
+  "total_left_actions": 51,
+  "total_reward": 5384.0,
+  "total_right_actions": 315,
+  "total_steps": 1491
+}

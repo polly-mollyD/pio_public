@@ -1,0 +1,4 @@
+<launch>
+  <rosparam file="$(find pio_qn)/config/pio_qlearn.yaml" command="load"/>
+  <node pkg="pio_qn" type="start_training.py" name="pio_depth_qlearn" output="screen"/>
+</launch>

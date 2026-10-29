@@ -1,0 +1,53 @@
+<launch>
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro '$(find pio_description)/urdf/Asem_Reduced.SLDASM.urdf.xacro'" />
+
+  <!--
+    World selection by file stem, e.g. world:=room_trial_04 loads
+    worlds/room_trial_04.world.
+
+    openai_ros' ROSLauncher starts this file with no arguments, so the value
+    also falls back to the PIO_WORLD environment variable. That makes the world
+    selectable when the simulation is launched indirectly by the training or
+    testing node.
+  -->
+  <arg
+    name="world"
+    default="$(optenv PIO_WORLD room_trial_01)" />
+
+  <arg
+    name="world_name"
+    default="$(find pio_description)/worlds/$(arg world).world" />
+
+  <!--
+    Set gui:=false (or PIO_GUI=false) to run headless: gzserver still simulates
+    and publishes, only the gzclient window is skipped.
+  -->
+  <arg
+    name="gui"
+    default="$(optenv PIO_GUI true)" />
+
+  <env
+    name="GAZEBO_MODEL_PATH"
+    value="$(find pio_description)/models:/home/pollymolly/.gazebo/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+  <include
+    file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+    <arg name="gui" value="$(arg gui)" />
+  </include>
+
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model pio -x 1.7 -y 1.65 -z 0.05 -Y -2.36"
+    output="screen" />
+
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+
+</launch>

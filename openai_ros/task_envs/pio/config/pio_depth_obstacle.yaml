@@ -1,0 +1,6 @@
+pio:
+  # With 5 sectors, the Q-learning state is far-left | ... | centre-left | centre | centre-right | ... | far-right.
+  depth_sectors: 5
+  min_range: 0.20
+  medium_range: 0.65
+  max_depth_range: 5.0

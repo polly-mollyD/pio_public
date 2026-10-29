@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pio_qn</name>
+  <version>0.0.1</version>
+  <description>Q-learning training package for PIO depth obstacle avoidance.</description>
+
+  <maintainer email="TODO@email.com">pollymolly</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>openai_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+</package>

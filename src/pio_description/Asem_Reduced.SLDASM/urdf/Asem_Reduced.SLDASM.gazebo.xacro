@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name = "Asem_Reduced.SLDASM">
+    <gazebo reference="Chassis">
+    <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="Wheel_Left">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="Wheel_Right">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="CameraMountBottom">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="CameraMountTop">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="pio_diff_drive" filename="libgazebo_ros_diff_drive.so">
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometrySource>world</odometrySource>
+
+            <robotBaseFrame>Chassis</robotBaseFrame>
+
+            <publishOdomTF>true</publishOdomTF>
+            <publishWheelTF>false</publishWheelTF>
+            <publishTf>true</publishTf>
+            <publishWheelJointState>true</publishWheelJointState>
+
+            <legacyMode>false</legacyMode>
+            <updateRate>30</updateRate>
+
+            <leftJoint>Wheel_Right_joint</leftJoint>
+            <rightJoint>Wheel_Left_joint</rightJoint>
+
+            <wheelSeparation>0.1635</wheelSeparation>
+            <wheelDiameter>0.08</wheelDiameter>
+
+            <wheelAcceleration>0.3</wheelAcceleration>
+            <wheelTorque>2</wheelTorque>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="Battery_Holder">
+        <mu1>0.05</mu1>
+        <mu2>0.05</mu2>
+        <kp>1000000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1.0</maxVel>
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <gazebo reference="RearCasterFork">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <gazebo reference="RearCasterWheel">
+        <material>Gazebo/Black</material>
+        <mu1>0.08</mu1>
+        <mu2>0.05</mu2>
+        <kp>100000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.0005</minDepth>
+        <maxVel>0.1</maxVel>
+    </gazebo>
+
+ 
+
+    <gazebo reference="camera_link">
+        <sensor type="camera" name="pio_camera">
+            <always_on>true</always_on>
+            <visualize>false</visualize>
+            <update_rate>30</update_rate>
+            <camera>
+            <horizontal_fov>1.085595</horizontal_fov>
+            <image>
+                <width>320</width>
+                <height>240</height>
+                <format>R8G8B8</format>
+            </image>
+            <clip>
+                <near>0.03</near>
+                <far>10.0</far>
+            </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30.0</updateRate>
+            <cameraName>camera</cameraName>
+            <frameName>camera_optical_frame</frameName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+    <gazebo reference="camera_link">
+        <sensor type="depth" name="pio_depth_camera">
+            <always_on>true</always_on>
+            <visualize>false</visualize>
+            <update_rate>30</update_rate>
+
+            <camera>
+                <horizontal_fov>1.085595</horizontal_fov>
+                <image>
+                        <width>320</width>
+                        <height>240</height>
+                        <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.03</near>
+                    <far>5.0</far>
+                </clip>
+            </camera>
+
+            <plugin name="depth_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>30.0</updateRate>
+                <cameraName>camera</cameraName>
+                <frameName>camera_optical_frame</frameName>
+
+                <imageTopicName>depth/rgb/image_raw</imageTopicName>
+                <cameraInfoTopicName>depth/rgb/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>depth/image_raw</depthImageTopicName>
+                <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+                <pointCloudTopicName>depth/points</pointCloudTopicName>
+
+                <pointCloudCutoff>0.03</pointCloudCutoff>
+                <pointCloudCutoffMax>5.0</pointCloudCutoffMax>
+            </plugin>
+        </sensor>
+    </gazebo>
+</robot>

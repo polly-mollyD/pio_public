@@ -1,0 +1,30 @@
+pio:
+  # OpenAI-ROS environment registration and simulation workspace.
+  task_and_robot_environment_name: PioDepthObstacle-v0
+  ros_ws_abspath: /home/pollymolly/pio_ws
+
+  alpha: 0.1
+  alpha_discount: 0.997
+  alpha_min: 0.01
+  gamma: 0.9
+  epsilon: 0.9
+  epsilon_discount: 0.997
+  epsilon_min: 0.10
+
+  nepisodes: 1000
+  nsteps: 1000
+  checkpoint_interval: 50
+  episodes_per_room_block: 10
+
+  n_actions: 3
+
+  linear_forward_speed: 0.10
+  linear_turn_speed: 0.02
+  angular_speed: 0.3
+
+  init_linear_forward_speed: 0.0
+  init_linear_turn_speed: 0.0
+
+  forwards_reward: 5.0
+  turn_reward: 1.0
+  end_episode_points: 200

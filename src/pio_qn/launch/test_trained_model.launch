@@ -1,0 +1,48 @@
+<launch>
+  <!-- Load the same environment and robot settings used for training. -->
+  <rosparam
+    file="$(find pio_qn)/config/pio_qlearn.yaml"
+    command="load"
+  />
+
+  <!--
+    Leave model_path empty to automatically use the newest q_table.pkl.
+  -->
+  <arg
+    name="model_path"
+    default=""
+  />
+
+  <!-- Five minutes = 300 seconds. -->
+  <arg
+    name="duration_seconds"
+    default="300"
+  />
+
+  <arg
+    name="number_of_runs"
+    default="3"
+  />
+
+  <param
+    name="/pio_test/number_of_runs"
+    value="$(arg number_of_runs)"
+  />
+
+  <param
+    name="/pio_test/model_path"
+    value="$(arg model_path)"
+  />
+
+  <param
+    name="/pio_test/duration_seconds"
+    value="$(arg duration_seconds)"
+  />
+
+  <node
+    pkg="pio_qn"
+    type="test_trained_model.py"
+    name="pio_test_trained_model"
+    output="screen"
+  />
+</launch>

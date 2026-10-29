@@ -1,0 +1,138 @@
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- North wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 2.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South wall -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -2.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>5 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>5 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>2.5 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 5 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 5 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-2.5 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 5 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 5 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+
+    <model name="box_obstacle_1">
+      <static>true</static>
+      <pose>-1.107927 -2.188559 0.250000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.5 0.5 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.5 0.5 0.5</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+
+
+    <model name="cylinder_obstacle_1">
+      <static>true</static>
+      <pose>1.35 -1.30 0.35 0 0 0</pose>
+
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+
+          <material>
+            <ambient>0.6 0.3 0.1 1</ambient>
+            <diffuse>0.6 0.3 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <include>
+      <name>obstacle_1</name>
+      <uri>model://beer</uri>
+      <pose>1.70 0.83 0 0 0 0.1</pose>
+      <static>true</static>
+    </include>
+
+    <include><name>table_marble</name><uri>model://table_marble</uri><pose>-0.190397 0.725809 0.648000 0 0 0.049999</pose><static>true</static></include>
+    <include><name>obstacle_2</name><uri>model://beer</uri><pose>1.55 -0.45 0 0 0 0.20</pose><static>true</static></include>
+    <include><name>obstacle_3</name><uri>model://beer</uri><pose>-1.55 -0.65 0 0 0 0</pose><static>true</static></include>
+    <include><name>obstacle_4</name><uri>model://beer</uri><pose>1.20 -1.35 0 0 0 0</pose><static>true</static></include>
+  </world>
+</sdf>
